@@ -60,6 +60,12 @@ class Company {
             return total + employee.calculateAnnualSalary(); // total payroll
         }, 0); // calculate total payroll
     }; // payroll system
+
+    // Task 5: Implementing Promotions modification
+    promoteToManager (employee, teamSize) {
+       const index = this.employees.indexOf(employee);
+        this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize); // promotion to manager
+    }
 }; // company class
 
 const company = new Company("TechCorp"); // new company
@@ -68,3 +74,6 @@ company.addEmployee(mgr1); // adding manager
 company.listEmployees(); // list of employees
 
 console.log(company.calculateTotalPayroll()); // print total payroll
+
+company.promoteToManager(emp1, 3); // promote employee
+company.listEmployees(); // new employee list

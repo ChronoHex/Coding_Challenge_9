@@ -47,9 +47,22 @@ class Company {
     listEmployees() {
         this.employees.forEach(employee => console.log(employee.getDetails())); // list of employees
     }
+    // Task 4: Implementing a Payroll System
+    calculateTotalPayroll() {
+        let total = 0; // total payroll
+        return this.employees.reduce((total, employee) => {
+            if (employee instanceof Manager) {
+                return total + employee.calculateAnnualSalary() + employee.calculateBonus(); // calculate total payroll
+            } else {
+                return total + employee.calculateAnnualSalary();
+            } // calculate total payroll
+        }, total);
+    } // payroll system
 }; // company class
 
 const company = new Company("TechCorp"); // new company
 company.addEmployee(emp1); // adding employee
 company.addEmployee(mgr1); // adding manager
 company.listEmployees(); // list of employees
+
+console.log(company.calculateTotalPayroll()); // print total payroll

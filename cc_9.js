@@ -24,7 +24,7 @@ class Manager extends Employee {
         this.teamSize = teamSize; // Manager's team size
     }; // manager constructor
     getDetails() {
-        return `Manager: ${this.name}, Id: ${this.id}, Department: ${this.department}, Salary: ${this.salary}, Team Size ${this.teamSize}`;
+        return `Manager: ${this.name}, Id: ${this.id}, Department: ${this.department}, Salary: ${this.salary}, Team Size: ${this.teamSize}`;
     } // manager details
     calculateBonus() {
         return this.salary * 12 * 0.10; // calculate bonus
@@ -34,3 +34,22 @@ class Manager extends Employee {
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5); // new manager
 console.log(mgr1.getDetails()); // print manager details
 console.log(mgr1.calculateBonus()); // print manager bonus
+
+// Task 3: Creating a Company Class
+class Company {
+    constructor(name) {
+        this.name = name; // company name
+        this.employees = []; // company employees
+    }; // company constructor
+    addEmployee(employee) {
+        this.employees.push(employee); // adding employees to comapny
+    }
+    listEmployees() {
+        this.employees.forEach(employee => console.log(employee.getDetails())); // list of employees
+    }
+}; // company class
+
+const company = new Company("TechCorp"); // new company
+company.addEmployee(emp1); // adding employee
+company.addEmployee(mgr1); // adding manager
+company.listEmployees(); // list of employees

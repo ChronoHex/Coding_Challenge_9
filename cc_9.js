@@ -7,17 +7,11 @@ class Employee {
         this.salary = salary; // employee salary
     }; // employee constructor
     getDetails() {
-        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}}`;
+            return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}`;
     }; // getting employee details
-    
-    // task 4 modification
     calculateAnnualSalary() {
-    if (this instanceof Manager) {
-        return this.salary * 12 + this.calculateBonus(); // annual mananger salary
-    } else {
-        return this.salary * 12; // annual employee salary
-    }; // calculate annual salary
-    }; // task 4 modify for bonus
+        return this.salary * 12; // annual salary
+    }
 }; // employee class
 
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000); // new employee
@@ -35,6 +29,10 @@ class Manager extends Employee {
     calculateBonus() {
         return this.salary * 12 * 0.10; // calculate bonus
     }
+    // Task 4 modification
+    calculateAnnualSalary() {
+        return this.salary * 12 + this.calculateBonus();
+    }
 }; // manager class
 
 const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5); // new manager
@@ -48,15 +46,14 @@ class Company {
         this.employees = []; // company employees
     }; // company constructor
     addEmployee(employee) {
-        this.employees.push(employee); // adding employees to comapny
+        this.employees.push(employee); // adding employees to company
     }
     listEmployees() {
         this.employees.forEach(employee => console.log(employee.getDetails())); // list of employees
     }
     // Task 4 modify payroll system
     calculateTotalPayroll() {
-        let total = 0; // total payroll
-        return this.employees.reduce((total, employee) => {
+       return this.employees.reduce((total, employee) => {
             return total + employee.calculateAnnualSalary(); // total payroll
         }, 0); // calculate total payroll
     }; // payroll system
@@ -64,6 +61,7 @@ class Company {
     // Task 5: Implementing Promotions modification
     promoteToManager (employee, teamSize) {
        const index = this.employees.indexOf(employee);
+       if (index !== -1)
         this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize); // promotion to manager
     }
 }; // company class

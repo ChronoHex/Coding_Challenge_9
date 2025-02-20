@@ -9,9 +9,15 @@ class Employee {
     getDetails() {
         return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: ${this.salary}}`;
     }; // getting employee details
+    
+    // task 4 modification
     calculateAnnualSalary() {
-    return this.salary * 12; // calculate annual salary
-}
+    if (this instanceof Manager) {
+        return this.salary * 12 + this.calculateBonus(); // annual mananger salary
+    } else {
+        return this.salary * 12; // annual employee salary
+    }; // calculate annual salary
+    }; // task 4 modify for bonus
 }; // employee class
 
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000); // new employee
@@ -47,17 +53,13 @@ class Company {
     listEmployees() {
         this.employees.forEach(employee => console.log(employee.getDetails())); // list of employees
     }
-    // Task 4: Implementing a Payroll System
+    // Task 4 modify payroll system
     calculateTotalPayroll() {
         let total = 0; // total payroll
         return this.employees.reduce((total, employee) => {
-            if (employee instanceof Manager) {
-                return total + employee.calculateAnnualSalary() + employee.calculateBonus(); // calculate total payroll
-            } else {
-                return total + employee.calculateAnnualSalary();
-            } // calculate total payroll
-        }, total);
-    } // payroll system
+            return total + employee.calculateAnnualSalary(); // total payroll
+        }, 0); // calculate total payroll
+    }; // payroll system
 }; // company class
 
 const company = new Company("TechCorp"); // new company

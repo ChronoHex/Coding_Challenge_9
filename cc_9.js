@@ -17,6 +17,8 @@ class Employee {
 const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000); // new employee
 console.log(emp1.getDetails()); // print employee details
 
+console.log(emp1.calculateAnnualSalary()); // print anual salary
+
 // Task 2: Creating a Manager Class (Inheritance & Method Overriding)
 class Manager extends Employee {
     constructor(name, id, department, salary, teamSize) {
